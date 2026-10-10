@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Digital Identity Card Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="dashboard">
+
+  <!-- Header & Top Navigation -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="dashboard.html" class="brand-logo-link">
+        <svg class="brand-icon" viewBox="0 0 48 48" role="img" aria-label="Verified digital identity card">
+          <rect x="4" y="5" width="34" height="29" rx="6" fill="#211a2c" stroke="#a78bfa" stroke-width="2"/>
+          <circle cx="14" cy="15" r="4" fill="#f4f1fb"/>
+          <path d="M8.5 28c.6-4 2.5-6 5.5-6s4.9 2 5.5 6" fill="#f4f1fb"/>
+          <path d="M23 14h10M23 19h9M23 24h6" stroke="#eee9f8" stroke-width="1.6" stroke-linecap="round"/>
+          <circle cx="35" cy="34" r="9" fill="#10b981" stroke="#111315" stroke-width="2"/>
+          <path d="m31 34 2.7 2.7 5.3-5.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="brand-text-group">
+          <span class="brand-title">Digital Identity Card Generator</span>
+          <span class="brand-subtitle">Official Management Portal</span>
+        </div>
+      </a>
+
+      <!-- Navigation Menu -->
+      <nav>
+        <ul class="nav-links">
+          <li class="nav-item active">
+            <a href="dashboard.html">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="card-categories.html">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+              Create ID Card
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="javascript:void(0)" onclick="openPreviewModal()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              ID Card Preview
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="btn-logout-action" style="color: var(--accent-rose);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+              Logout
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Mobile Navigation Hamburger -->
+      <button class="btn-mobile-toggle" aria-label="Toggle navigation">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Body -->
+  <main class="main-content">
+    <!-- Dashboard Header with Title & Create New Button -->
+    <div class="dashboard-header">
+      <div class="dashboard-title-group">
+        <h1>Administrative Dashboard</h1>
+        <p>Monitor identity badges, verification statuses, and generate new student/staff credentials.</p>
+      </div>
+      <div>
+        <a href="card-categories.html" class="btn btn-primary btn-lg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          Create New ID Card
+        </a>
+      </div>
+    </div>
+
+    <!-- Statistics Overview Grid -->
+    <div class="stats-grid">
+      <!-- Total ID Cards -->
+      <div class="stat-card">
+        <div class="stat-icon-wrapper purple">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+        </div>
+        <div class="stat-info">
+          <span class="stat-label">Total ID Cards</span>
+          <span class="stat-value" id="statTotalCards">0</span>
+          <span class="stat-subtext">Issued cards on record</span>
+        </div>
+      </div>
+
+      <!-- Active ID Cards -->
+      <div class="stat-card">
+        <div class="stat-icon-wrapper green">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        </div>
+        <div class="stat-info">
+          <span class="stat-label">Active ID Cards</span>
+          <span class="stat-value" id="statActiveCards">0</span>
+          <span class="stat-subtext">Cards marked active</span>
+        </div>
+      </div>
+
+      <!-- Pending ID Cards -->
+      <div class="stat-card">
+        <div class="stat-icon-wrapper amber">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        </div>
+        <div class="stat-info">
+          <span class="stat-label">Pending ID Cards</span>
+          <span class="stat-value" id="statPendingCards">0</span>
+          <span class="stat-subtext">Awaiting administrative check</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cards Management Panel -->
+    <div class="section-panel">
+      <div class="section-panel-header">
+        <h2 class="section-title">Issued Digital Identity Cards</h2>
+        <div class="search-box">
+          <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="tableSearchInput" placeholder="Search by name, ID or dept...">
+        </div>
+      </div>
+
+      <!-- Table View -->
+      <div class="table-responsive">
+        <table class="id-table">
+          <thead>
+            <tr>
+              <th>Member / Student</th>
+              <th>Department & Course</th>
+              <th>Contact Info</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="cardsTableBody">
+            <!-- Dynamically populated via JavaScript -->
+          </tbody>
+        </table>
+
+        <!-- Empty State -->
+        <div id="cardsEmptyState" class="empty-state" style="display: none;">
+          <svg class="empty-state-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+          <h3 style="font-weight: 700; margin-bottom: 0.5rem;">No Identity Cards Found</h3>
+          <p style="margin-bottom: 1.25rem;">Start by generating your first digital student or employee ID card.</p>
+          <a href="card-categories.html" class="btn btn-primary btn-sm">Create New ID Card</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Card Preview Modal -->
+  <div class="modal-overlay" id="cardPreviewModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">Digital Identity Card Preview</h3>
+        <button type="button" class="modal-close-btn modal-close-trigger">&times;</button>
+      </div>
+      <div class="modal-body" id="modalCardMount">
+        <!-- Rendered Card mounts here -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary modal-close-trigger">Close</button>
+        <button type="button" class="btn btn-primary" id="dashboardPrintCardBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          Print Card
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>&copy; 2026 Digital Identity Card Generator. Pure Frontend Architecture • Built with HTML, CSS & JavaScript.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

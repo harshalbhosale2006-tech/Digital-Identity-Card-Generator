@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create ID Card - Digital Identity Card Generator</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+</head>
+<body data-page="category-card">
+  <header class="site-header">
+    <div class="header-container">
+      <a href="dashboard.html" class="brand-logo-link">
+        <img class="brand-icon" src="assets/logo.svg" alt="">
+        <div class="brand-text-group">
+          <span class="brand-title">Digital Identity Card Generator</span>
+          <span class="brand-subtitle">Additional identity categories</span>
+        </div>
+      </a>
+      <nav aria-label="Main navigation">
+        <ul class="nav-links">
+          <li class="nav-item"><a href="dashboard.html">Dashboard</a></li>
+          <li class="nav-item active"><a href="card-categories.html">ID Card Categories</a></li>
+          <li class="nav-item"><a href="#" class="btn-logout-action">Logout</a></li>
+        </ul>
+      </nav>
+      <button class="btn-mobile-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    </div>
+  </header>
+  <main class="main-content category-page">
+    <section class="create-page-heading">
+      <div class="create-page-heading-copy">
+        <span class="create-page-eyebrow">ADDITIONAL IDENTITY CATEGORY</span>
+        <h1 id="categoryPageTitle">Create ID Card</h1>
+        <p id="categoryPageDescription">Complete the details for this card category. Only required category fields are enforced.</p>
+      </div>
+      <a class="btn btn-secondary" href="card-categories.html">Change category</a>
+    </section>
+    <div class="category-form-layout">
+      <section class="form-panel category-form-panel">
+        <div class="form-panel-heading">
+          <div class="form-panel-icon" aria-hidden="true">ID</div>
+          <div><h2 class="form-panel-title">Cardholder details</h2><p class="form-panel-kicker">Required fields are marked</p></div>
+        </div>
+        <form id="categoryCardForm" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="categoryPhoto">Profile photo <span class="optional-label">Optional</span></label>
+            <input class="form-control no-icon" id="categoryPhoto" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
+            <div class="form-help" id="categoryPhotoHelp">PNG, JPEG, WebP or GIF; maximum 4 MB.</div>
+          </div>
+          <div class="form-row form-row-2">
+            <div class="form-group">
+              <label class="form-label" for="categoryName">Name <span class="required">*</span></label>
+              <input class="form-control no-icon" id="categoryName" maxlength="120" required autocomplete="name">
+              <div class="form-help"></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="categoryId">Unique ID <span class="required">*</span></label>
+              <input class="form-control no-icon" id="categoryId" maxlength="60" required>
+              <div class="form-help"></div>
+            </div>
+          </div>
+          <div id="categorySpecificFields" class="form-row form-row-2"></div>
+          <div class="form-row form-row-2">
+            <div class="form-group">
+              <label class="form-label" for="categoryEmail">Email <span class="optional-label">Optional</span></label>
+              <input class="form-control no-icon" id="categoryEmail" type="email" maxlength="160" autocomplete="email">
+              <div class="form-help"></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="categoryPhone">Phone <span class="optional-label">Optional</span></label>
+              <input class="form-control no-icon" id="categoryPhone" type="tel" maxlength="30" autocomplete="tel">
+              <div class="form-help"></div>
+            </div>
+          </div>
+          <div class="category-form-actions">
+            <button class="btn btn-primary btn-lg" type="submit">Save ID Card</button>
+            <button class="btn btn-secondary" type="button" id="categoryResetBtn">Reset</button>
+          </div>
+          <p class="category-notice" role="note">These additional card categories are not officially verified by the student QR verification service. They will not receive an institutional verification QR code.</p>
+          <p class="category-error" id="categoryFormError" role="alert" hidden></p>
+        </form>
+      </section>
+      <section class="category-preview-panel">
+        <div class="category-preview-heading">
+          <div><span class="create-page-eyebrow">CARD PREVIEW</span><h2 id="categoryPreviewTitle">Identity card</h2></div>
+          <div class="category-preview-controls">
+            <button class="btn btn-secondary btn-sm" type="button" id="categoryFlipBtn" aria-pressed="false">Flip Card</button>
+            <button class="btn btn-outline btn-sm" type="button" id="categoryPrintBtn">Print</button>
+          </div>
+        </div>
+        <div class="category-card-perspective" id="categoryCardPerspective">
+          <div class="category-card-flipper">
+            <article class="category-id-card category-id-card-front" id="categoryCardFront">
+              <header class="category-card-header"><img src="assets/logo.svg" alt="" class="category-card-logo"><div><span class="category-org" id="previewOrganization">DIGITAL IDENTITY</span><strong id="previewCategoryLabel">IDENTITY CARD</strong></div><span class="category-card-status">UNVERIFIED</span></header>
+              <div class="category-card-front-content">
+                <img class="category-card-photo" id="categoryPreviewPhoto" src="assets/default-avatar.svg" alt="">
+                <div class="category-card-primary"><span class="category-card-type" id="previewType">IDENTITY</span><h3 id="previewName">Cardholder Name</h3><p id="previewId">CARD-ID</p><strong class="category-card-highlight" id="previewPrimaryDetail">Additional details</strong></div>
+              </div>
+              <div class="category-card-bottom"><span id="previewContact">Contact details are optional</span><span class="category-card-unverified">NOT OFFICIALLY VERIFIED</span></div>
+            </article>
+            <article class="category-id-card category-id-card-back" id="categoryCardBack">
+              <header class="category-card-header"><img src="assets/logo.svg" alt="" class="category-card-logo"><div><span class="category-org">DIGITAL IDENTITY</span><strong>CARD DETAILS</strong></div></header>
+              <div class="category-card-back-content"><h3 id="previewBackName">Cardholder Name</h3><p id="previewBackId">CARD-ID</p><dl id="categoryPreviewDetails"></dl><p class="category-card-privacy">Contact information and private details are never published through QR verification.</p></div>
+              <footer class="category-card-bottom"><span id="previewBackCategory">IDENTITY CARD</span><span class="category-card-unverified">UNVERIFIED CATEGORY</span></footer>
+            </article>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

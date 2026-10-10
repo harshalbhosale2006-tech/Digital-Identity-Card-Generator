@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Identity Card Generator - Modern Web App</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Landing page specific styling */
+    .hero-section {
+      text-align: center;
+      padding: 4.5rem 1.5rem 3rem 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+      color: var(--text-main);
+    }
+    .hero-title span {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-desc {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 2.25rem;
+    }
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3.5rem;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+      text-align: left;
+    }
+    .feature-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition-fast);
+    }
+    .feature-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-focus);
+    }
+    .feature-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background: var(--primary-light);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .feature-title {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text-main);
+    }
+    .feature-text {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    body[data-page="home"] {
+      --primary: #a78bfa;
+      --primary-hover: #c4b5fd;
+      --primary-light: rgba(139, 92, 246, 0.14);
+      --primary-focus: rgba(167, 139, 250, 0.24);
+      --gradient-primary: linear-gradient(135deg, #7654c7 0%, #593b9b 100%);
+      --bg-main: #111214;
+      --bg-surface: rgba(31, 32, 36, 0.92);
+      --bg-surface-alt: rgba(42, 43, 48, 0.82);
+      --text-main: #f4f4f5;
+      --text-muted: #a8a8b2;
+      --text-light: #888894;
+      --border-color: rgba(190, 194, 202, 0.15);
+      --border-color-strong: rgba(190, 194, 202, 0.27);
+      --border-focus: #a78bfa;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(139, 92, 246, 0.1), transparent 34rem),
+        linear-gradient(145deg, #111214 0%, #17181b 55%, #101113 100%);
+      color: var(--text-main);
+    }
+
+    body[data-page="home"] .site-header {
+      background: rgba(20, 21, 24, 0.88);
+      border-bottom-color: rgba(190, 194, 202, 0.13);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    body[data-page="home"] .brand-logo-link {
+      color: var(--text-main);
+    }
+
+    body[data-page="home"] .brand-icon {
+      width: 42px;
+      height: 42px;
+    }
+
+    body[data-page="home"] .brand-title {
+      color: #f4f4f5;
+      background: none;
+      -webkit-text-fill-color: currentColor;
+      font-size: 1rem;
+    }
+
+    body[data-page="home"] .brand-subtitle {
+      color: #a7a7b1;
+      font-size: 0.68rem;
+    }
+
+    body[data-page="home"] .nav-item a {
+      color: #b4b4be;
+    }
+
+    body[data-page="home"] .nav-item a:hover {
+      color: #e7ddff;
+      background: rgba(139, 92, 246, 0.12);
+    }
+
+    body[data-page="home"] .main-content {
+      max-width: 1320px;
+      padding: 0.5rem 1.5rem 3.5rem;
+    }
+
+    body[data-page="home"] .hero-section {
+      max-width: 1120px;
+      padding: 3.5rem 1.25rem 2rem;
+    }
+
+    body[data-page="home"] .hero-title {
+      max-width: 19ch;
+      margin: 0 auto 1.1rem;
+      color: #f4f4f5;
+      font-size: clamp(2.2rem, 5vw, 3.7rem);
+      line-height: 1.12;
+      letter-spacing: -0.045em;
+    }
+
+    body[data-page="home"] .hero-desc {
+      max-width: 68ch;
+      margin: 0 auto 1.8rem;
+      color: #b6b7bd;
+      font-size: 1.02rem;
+      line-height: 1.75;
+    }
+
+    body[data-page="home"] .hero-cta-group {
+      gap: 0.85rem;
+      margin-bottom: 2.8rem;
+    }
+
+    body[data-page="home"] .btn-primary {
+      background: var(--gradient-primary);
+      color: #fff;
+      box-shadow: 0 7px 18px rgba(91, 63, 145, 0.25);
+    }
+
+    body[data-page="home"] .btn-primary:hover {
+      filter: brightness(1.12);
+      box-shadow: 0 10px 24px rgba(112, 77, 174, 0.3);
+      color: #fff;
+    }
+
+    body[data-page="home"] .btn-secondary {
+      background: rgba(38, 39, 44, 0.78);
+      color: #e7e5ec;
+      border-color: var(--border-color-strong);
+    }
+
+    body[data-page="home"] .btn-secondary:hover {
+      background: rgba(57, 58, 64, 0.9);
+      color: #fff;
+      border-color: rgba(190, 194, 202, 0.42);
+    }
+
+    body[data-page="home"] .features-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.1rem;
+      margin-top: 0;
+    }
+
+    body[data-page="home"] .feature-card {
+      background: linear-gradient(145deg, rgba(37, 38, 43, 0.9), rgba(27, 28, 32, 0.94));
+      border-color: rgba(190, 194, 202, 0.16);
+      padding: 1.4rem;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    body[data-page="home"] .feature-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.26), 0 0 20px rgba(139, 92, 246, 0.07);
+      border-color: rgba(167, 139, 250, 0.3);
+    }
+
+    body[data-page="home"] .feature-icon-box {
+      width: 44px;
+      height: 44px;
+      margin-bottom: 0.9rem;
+      color: #c4b5fd;
+      background: rgba(139, 92, 246, 0.16);
+      border: 1px solid rgba(167, 139, 250, 0.16);
+    }
+
+    body[data-page="home"] .feature-title {
+      color: #f1eff5;
+      font-size: 1.02rem;
+    }
+
+    body[data-page="home"] .feature-text {
+      color: #a8a8b2;
+      font-size: 0.86rem;
+      line-height: 1.65;
+    }
+
+    body[data-page="home"] .site-footer {
+      color: #92929d;
+      background: rgba(18, 19, 22, 0.72);
+      border-top-color: rgba(190, 194, 202, 0.12);
+    }
+
+    body[data-page="home"] .btn-mobile-toggle {
+      color: #e6e4eb;
+      border-color: var(--border-color-strong);
+    }
+
+    @media (max-width: 920px) {
+      body[data-page="home"] .header-container {
+        position: relative;
+      }
+
+      body[data-page="home"] .header-container > nav {
+        position: static;
+      }
+
+      body[data-page="home"] .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0.75rem;
+        right: 0.75rem;
+        flex-direction: column;
+        gap: 0.25rem;
+        padding: 1rem;
+        background: rgba(26, 27, 31, 0.98);
+        border: 1px solid rgba(190, 194, 202, 0.17);
+        border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+        box-shadow: 0 18px 32px rgba(0, 0, 0, 0.38);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+      }
+
+      body[data-page="home"] .nav-links.mobile-open {
+        display: flex;
+      }
+
+      body[data-page="home"] .btn-mobile-toggle {
+        display: block;
+      }
+
+      body[data-page="home"] .nav-item a {
+        padding: 0.75rem 0.85rem;
+      }
+
+      body[data-page="home"] .main-content {
+        padding-inline: 1.1rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body[data-page="home"] .hero-section {
+        padding: 2.8rem 0.2rem 1.5rem;
+      }
+
+      body[data-page="home"] .hero-title {
+        font-size: clamp(2rem, 9vw, 2.7rem);
+      }
+
+      body[data-page="home"] .hero-desc {
+        font-size: 0.94rem;
+        margin-bottom: 1.45rem;
+      }
+
+      body[data-page="home"] .hero-cta-group {
+        flex-direction: column;
+        align-items: stretch;
+        margin-bottom: 2rem;
+      }
+
+      body[data-page="home"] .hero-cta-group .btn {
+        width: 100%;
+        white-space: normal;
+      }
+
+      body[data-page="home"] .features-grid {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+      }
+
+      body[data-page="home"] .feature-card {
+        padding: 1.15rem;
+      }
+
+      body[data-page="home"] .header-container {
+        padding-inline: 0.9rem;
+      }
+
+      body[data-page="home"] .brand-title {
+        font-size: 0.84rem;
+      }
+
+      body[data-page="home"] .brand-subtitle {
+        font-size: 0.6rem;
+      }
+    }
+  </style>
+</head>
+<body data-page="home">
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo-link">
+        <svg class="brand-icon" viewBox="0 0 48 48" role="img" aria-label="Verified digital identity card">
+          <rect x="4" y="5" width="34" height="29" rx="6" fill="#211a2c" stroke="#a78bfa" stroke-width="2"/>
+          <circle cx="14" cy="15" r="4" fill="#f4f1fb"/>
+          <path d="M8.5 28c.6-4 2.5-6 5.5-6s4.9 2 5.5 6" fill="#f4f1fb"/>
+          <path d="M23 14h10M23 19h9M23 24h6" stroke="#eee9f8" stroke-width="1.6" stroke-linecap="round"/>
+          <circle cx="35" cy="34" r="9" fill="#10b981" stroke="#111315" stroke-width="2"/>
+          <path d="m31 34 2.7 2.7 5.3-5.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="brand-text-group">
+          <span class="brand-title">Digital Identity Card Generator</span>
+          <span class="brand-subtitle">Modern Identity Badging</span>
+        </div>
+      </a>
+
+      <!-- Quick Nav -->
+      <nav>
+        <ul class="nav-links">
+          <li class="nav-item">
+            <a href="login.html">Login</a>
+          </li>
+          <li class="nav-item">
+            <a href="dashboard.html">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a href="create-card.html" class="btn btn-primary btn-sm" style="color: #ffffff;">Generate Card</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="btn-mobile-toggle" aria-label="Toggle navigation">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="main-content">
+    <section class="hero-section">
+      <h1 class="hero-title">
+        Design & Generate Professional <span>Digital Identity Cards</span> in Seconds
+      </h1>
+
+      <p class="hero-desc">
+        A seamless client-side identity badge generation suite. Enter personal and academic credentials, upload a profile photo, and preview a realistic digital identity card updated live in real time.
+      </p>
+
+      <div class="hero-cta-group">
+        <a href="login.html" class="btn btn-primary btn-lg">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
+          Open Login Demo
+        </a>
+        <a href="create-card.html" class="btn btn-secondary btn-lg">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+          Create ID Card Directly
+        </a>
+      </div>
+
+      <!-- Feature Grid -->
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+          </div>
+          <h2 class="feature-title">Live Dynamic Preview</h2>
+          <p class="feature-text">
+            Every keystroke, selection, and uploaded photo synchronizes instantaneously with the rendered badge in real-time.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+          </div>
+          <h2 class="feature-title">Instant Photo Upload</h2>
+          <p class="feature-text">
+            Local browser FileReader instantly converts your image file to high-resolution display without external servers or uploads.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          </div>
+          <h2 class="feature-title">Dashboard & Storage</h2>
+          <p class="feature-text">
+            Client-side state records every generated identity badge with instant statistics for Total, Active, and Pending badges.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          </div>
+          <h2 class="feature-title">Print & PDF Ready</h2>
+          <p class="feature-text">
+            Standard CR80 dimensions with dedicated print stylesheets for crisp output to desktop printers or PDF.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>&copy; 2026 Digital Identity Card Generator. Pure Frontend Architecture • Built with HTML, CSS & JavaScript.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

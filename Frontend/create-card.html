@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Digital ID Card - Digital Identity Card Generator</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+</head>
+<body data-page="create-card">
+
+  <!-- Header Navigation -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="dashboard.html" class="brand-logo-link">
+        <svg class="brand-icon" viewBox="0 0 48 48" role="img" aria-label="Verified digital identity card">
+          <rect x="4" y="5" width="34" height="29" rx="6" fill="#211a2c" stroke="#a78bfa" stroke-width="2"/>
+          <circle cx="14" cy="15" r="4" fill="#f4f1fb"/>
+          <path d="M8.5 28c.6-4 2.5-6 5.5-6s4.9 2 5.5 6" fill="#f4f1fb"/>
+          <path d="M23 14h10M23 19h9M23 24h6" stroke="#eee9f8" stroke-width="1.6" stroke-linecap="round"/>
+          <circle cx="35" cy="34" r="9" fill="#10b981" stroke="#111315" stroke-width="2"/>
+          <path d="m31 34 2.7 2.7 5.3-5.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="brand-text-group">
+          <span class="brand-title">Digital Identity Card Generator</span>
+          <span class="brand-subtitle">Official Management Portal</span>
+        </div>
+      </a>
+
+      <!-- Navigation Menu -->
+      <nav aria-label="Main navigation">
+        <ul class="nav-links">
+          <li class="nav-item">
+            <a href="dashboard.html">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              Dashboard
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a href="create-card.html">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+              Create ID Card
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#cardPreviewSection">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              ID Card Preview
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="btn-logout-action" style="color: var(--accent-rose);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+              Logout
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Mobile Hamburger -->
+      <button class="btn-mobile-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Layout (Form on Left, Live Preview on Right) -->
+  <main class="main-content">
+    <section class="create-page-heading" aria-labelledby="createPageTitle">
+      <div class="create-page-heading-copy">
+        <span class="create-page-eyebrow">IDENTITY MANAGEMENT</span>
+        <h1 id="createPageTitle">Create Identity Card</h1>
+        <p>Build a polished digital identity card. Your live preview updates as you enter each detail.</p>
+      </div>
+      <button type="button" class="btn btn-secondary" id="sampleDataBtn" title="Fill with sample data for quick preview">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.2 6.3L6 12l4.8 2.7L12 21l1.2-6.3L18 12l-4.8-2.7L12 3Z"/><path d="m19 3-.6 3.4L16 8l2.4 1.6L19 13l.6-3.4L22 8l-2.4-1.6L19 3Z"/></svg>
+        Fill Sample Data
+      </button>
+    </section>
+
+    <div class="create-card-grid">
+
+      <!-- LEFT COLUMN: ID Card Creation Form -->
+      <section class="form-panel">
+        <div class="form-panel-heading">
+          <div class="form-panel-icon" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M6 16c.4-1.5 1.4-2.3 3-2.3s2.6.8 3 2.3M14 9h4M14 13h4M14 17h2"/></svg>
+          </div>
+          <div>
+            <h2 class="form-panel-title">Identity details</h2>
+            <p class="form-panel-kicker">Enter the cardholder’s information</p>
+          </div>
+        </div>
+        <p class="form-panel-desc">Fields marked with <span class="required">*</span> are required.</p>
+
+        <form id="idCardForm" novalidate>
+
+          <!-- Profile Photo Upload Zone -->
+          <div class="form-group" style="margin-bottom: 1.5rem;">
+            <label class="form-label" for="photoFileInput">Profile Photo <span class="optional-label">Optional</span></label>
+            <div class="photo-upload-zone">
+              <img src="assets/default-avatar.svg" alt="Photo preview" class="upload-thumbnail" id="photoThumbnail">
+              <div class="upload-text-group">
+                <div class="upload-title">Add a profile photo</div>
+                <div class="upload-subtitle">Drop an image here or choose a file · JPG, PNG or WebP · Max 4MB</div>
+                <input type="file" id="photoFileInput" class="file-input-hidden" accept="image/*">
+                <button type="button" class="btn btn-outline btn-sm btn-upload-trigger" id="photoUploadBtn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                  Choose Photo File
+                </button>
+              </div>
+            </div>
+            <div class="form-help"></div>
+          </div>
+
+          <!-- Row 1: Full Name & Student/Employee ID -->
+          <div class="form-row form-row-2">
+            <div class="form-group">
+              <label class="form-label" for="fullName">
+                Full Name <span class="required">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="fullName" 
+                name="fullName" 
+                class="form-control no-icon" 
+                placeholder="e.g. Alex Morgan" 
+                required
+              >
+              <div class="form-help"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="idNumber">
+                Student/Employee ID <span class="required">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="idNumber" 
+                name="idNumber" 
+                class="form-control no-icon" 
+                placeholder="e.g. MIT-2026-1042" 
+                required
+              >
+              <div class="form-help"></div>
+            </div>
+          </div>
+
+          <!-- Row 2: Date of Birth & Blood Group -->
+          <div class="form-row form-row-2">
+            <div class="form-group">
+              <label class="form-label" for="dob">
+                Date of Birth <span class="required">*</span>
+              </label>
+              <input 
+                type="date" 
+                id="dob" 
+                name="dob" 
+                class="form-control no-icon" 
+                required
+              >
+              <div class="form-help"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="bloodGroup">
+                Blood Group <span class="required">*</span>
+              </label>
+              <select id="bloodGroup" name="bloodGroup" class="form-control no-icon" required>
+                <option value="">Select Blood Group</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+              </select>
+              <div class="form-help"></div>
+            </div>
+          </div>
+
+          <!-- Row 3: Department & Course -->
+          <div class="form-row form-row-2">
+            <div class="form-group">
+              <label class="form-label" for="department">
+                Department <span class="required">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="department" 
+                name="department" 
+                class="form-control no-icon" 
+                placeholder="e.g. Computer Science" 
+                required
+              >
+              <div class="form-help"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="course">
+                Course <span class="required">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="course" 
+                name="course" 
+                class="form-control no-icon" 
+                placeholder="e.g. B.Tech / MBA / BCA" 
+                required
+              >
+              <div class="form-help"></div>
+            </div>
+          </div>
+
+          <!-- Row 4: Year & Semester -->
+          <div class="form-row form-row-2">
+            <div class="form-group">
+              <label class="form-label" for="year">
+                Year <span class="required">*</span>
+              </label>
+              <select id="year" name="year" class="form-control no-icon" required>
+                <option value="">Select Year</option>
+                <option value="1st Year">1st Year</option>
+                <option value="2nd Year">2nd Year</option>
+                <option value="3rd Year">3rd Year</option>
+                <option value="4th Year">4th Year</option>
+                <option value="Faculty / Staff">Faculty / Staff</option>
+              </select>
+              <div class="form-help"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="semester">
+                Semester <span class="required">*</span>
+              </label>
+              <select id="semester" name="semester" class="form-control no-icon" required>
+                <option value="">Select Semester</option>
+                <option value="Semester 1">Semester 1</option>
+                <option value="Semester 2">Semester 2</option>
+                <option value="Semester 3">Semester 3</option>
+                <option value="Semester 4">Semester 4</option>
+                <option value="Semester 5">Semester 5</option>
+                <option value="Semester 6">Semester 6</option>
+                <option value="Semester 7">Semester 7</option>
+                <option value="Semester 8">Semester 8</option>
+                <option value="N/A">N/A</option>
+              </select>
+              <div class="form-help"></div>
+            </div>
+          </div>
+
+          <!-- Row 5: Email & Phone Number -->
+          <div class="form-row form-row-2">
+            <div class="form-group">
+              <label class="form-label" for="email">
+                Email Address <span class="required">*</span>
+              </label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                class="form-control no-icon" 
+                placeholder="student@institute.edu" 
+                required
+              >
+              <div class="form-help"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="phone">
+                Phone Number <span class="required">*</span>
+              </label>
+              <input 
+                type="tel" 
+                id="phone" 
+                name="phone" 
+                class="form-control no-icon" 
+                placeholder="+1 (555) 000-0000" 
+                required
+              >
+              <div class="form-help"></div>
+            </div>
+          </div>
+
+          <!-- Row 6: Address -->
+          <div class="form-group">
+            <label class="form-label" for="address">
+              Address <span class="required">*</span>
+            </label>
+            <textarea 
+              id="address" 
+              name="address" 
+              rows="2" 
+              class="form-control no-icon" 
+              placeholder="e.g. 742 Evergreen Terrace, Silicon Valley, CA"
+              required
+            ></textarea>
+            <div class="form-help"></div>
+          </div>
+
+          <!-- Form Buttons -->
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary btn-lg">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+              Generate ID Card
+            </button>
+
+            <button type="button" class="btn btn-secondary" id="resetFormBtn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M8 16H3v5"></path></svg>
+              Reset
+            </button>
+
+            <button type="button" class="btn btn-outline" id="printCardBtn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+              Print / Save Badge
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- RIGHT COLUMN: LIVE DYNAMIC DIGITAL IDENTITY CARD PREVIEW -->
+      <section class="preview-sticky-wrapper" id="cardPreviewSection">
+        <div class="preview-header-bar">
+          <h2 class="preview-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle></svg>
+            Live Digital ID Card Preview
+          </h2>
+          <div class="preview-controls">
+            <button type="button" class="btn btn-secondary btn-sm" id="flipCardBtn" title="Flip to view card back side">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+              Flip Card
+            </button>
+          </div>
+        </div>
+
+        <!-- 3D Perspective Card Container -->
+        <div class="id-card-perspective">
+          <div class="id-card-flipper">
+
+            <!-- FRONT FACE OF ID CARD -->
+            <div class="digital-id-card id-card-front" aria-label="Front of digital identity card">
+              <!-- College / Organization Header -->
+              <div class="card-top-header">
+                <div class="card-org-branding">
+                  <svg class="card-org-logo" viewBox="0 0 48 48" role="img" aria-label="Digital Identity Card Generator logo">
+                    <rect x="4" y="5" width="34" height="29" rx="6" fill="#211a2c" stroke="#c4b5fd" stroke-width="2"/>
+                    <circle cx="14" cy="15" r="4" fill="#f4f1fb"/>
+                    <path d="M8.5 28c.6-4 2.5-6 5.5-6s4.9 2 5.5 6" fill="#f4f1fb"/>
+                    <path d="M23 14h10M23 19h9M23 24h6" stroke="#eee9f8" stroke-width="1.6" stroke-linecap="round"/>
+                    <circle cx="35" cy="34" r="9" fill="#10b981" stroke="#111315" stroke-width="2"/>
+                    <path d="m31 34 2.7 2.7 5.3-5.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="card-org-name">METROPOLITAN INSTITUTE OF TECHNOLOGY</span>
+                </div>
+                <div class="card-title-pill">DIGITAL IDENTITY CARD</div>
+              </div>
+
+              <!-- Main Card Body -->
+              <div class="card-main-body">
+                <div class="card-identity-profile">
+                  <div class="card-photo-frame">
+                    <img src="assets/default-avatar.svg" alt="Profile Photo" class="card-photo-img" id="cardPreviewPhoto">
+                  </div>
+                  <div class="card-identity-copy">
+                    <span class="card-profile-eyebrow">STUDENT IDENTITY</span>
+                    <div class="card-full-name" id="previewFullName">Alex Morgan</div>
+                    <div class="card-id-number" id="previewIdNumber">MIT-2026-1042</div>
+                    <svg class="card-blood-drop" viewBox="0 0 44 52" role="img" aria-label="Blood group O plus">
+                      <path d="M22 2C17 10 5 22 5 33a17 17 0 0 0 34 0C39 22 27 10 22 2Z" fill="#a83249" stroke="#e58b9b" stroke-width="1.5"/>
+                      <text id="previewBloodGroupText" x="22" y="34" text-anchor="middle">O+</text>
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="card-details-grid">
+                  <div class="detail-item">
+                    <span class="detail-label">Department</span>
+                    <span class="detail-value" id="previewDepartment">Computer Science & Engineering</span>
+                  </div>
+                  <div class="detail-item">
+                    <span class="detail-label">Course</span>
+                    <span class="detail-value" id="previewCourse">B.Tech</span>
+                  </div>
+                  <div class="detail-item">
+                    <span class="detail-label">Year / Semester</span>
+                    <span class="detail-value" id="previewYearSem">3rd Year • Semester 6</span>
+                  </div>
+                </div>
+
+                <div class="card-front-footer">
+                  <div class="card-blood-note">
+                    <span class="card-footer-label">INSTITUTIONAL ID</span>
+                    <span class="card-footer-value">Issued by the Institute</span>
+                    <span class="card-serial">PROPERTY OF THE INSTITUTE</span>
+                  </div>
+                  <div class="card-qr-panel">
+                    <img class="card-qr-code" id="previewQrCode" alt="QR code linking to this saved card's verification page" hidden>
+                    <div class="card-qr-placeholder" id="previewQrPlaceholder">
+                      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM20 14v2m-3 4h3v-3"/></svg>
+                      <span>Pending</span>
+                    </div>
+                    <span class="card-qr-caption" id="previewVerificationState" role="status" aria-live="polite">Pending</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- BACK FACE OF ID CARD -->
+            <div class="digital-id-card id-card-back" aria-label="Back of digital identity card">
+              <div class="card-back-header">
+                <div class="card-back-brand">
+                  <svg class="card-org-logo" viewBox="0 0 48 48" role="img" aria-label="Digital Identity Card Generator logo">
+                    <rect x="4" y="5" width="34" height="29" rx="6" fill="#211a2c" stroke="#c4b5fd" stroke-width="2"/>
+                    <circle cx="14" cy="15" r="4" fill="#f4f1fb"/>
+                    <path d="M8.5 28c.6-4 2.5-6 5.5-6s4.9 2 5.5 6" fill="#f4f1fb"/>
+                    <path d="M23 14h10M23 19h9M23 24h6" stroke="#eee9f8" stroke-width="1.6" stroke-linecap="round"/>
+                    <circle cx="35" cy="34" r="9" fill="#10b981" stroke="#111315" stroke-width="2"/>
+                    <path d="m31 34 2.7 2.7 5.3-5.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <div>
+                    <span class="card-back-institution">METROPOLITAN INSTITUTE OF TECHNOLOGY</span>
+                    <span class="card-back-title">CARDHOLDER DETAILS</span>
+                  </div>
+                </div>
+              </div>
+              <div class="card-back-body">
+                <div class="card-back-section">
+                  <span class="card-back-label">Student ID</span>
+                  <p class="card-back-text card-back-id" id="previewBackId">MIT-2026-1042</p>
+                </div>
+                <div class="card-back-details">
+                  <div class="card-back-section">
+                    <span class="card-back-label">Date of birth</span>
+                    <p class="card-back-text" id="previewDob">14/05/2003</p>
+                  </div>
+                  <div class="card-back-section">
+                    <span class="card-back-label">Phone</span>
+                    <p class="card-back-text" id="previewPhone">+1 (555) 234-5678</p>
+                  </div>
+                  <div class="card-back-section">
+                    <span class="card-back-label">Email</span>
+                    <p class="card-back-text" id="previewEmail">alex.morgan@mit.edu</p>
+                  </div>
+                </div>
+                <div class="card-back-section">
+                  <span class="card-back-label">Verification</span>
+                  <p class="card-back-text">Scan the QR code on the front with a camera to check this card’s current status online.</p>
+                </div>
+                <div class="card-back-footer">
+                  <span class="card-back-serial">DIGITAL IDENTITY · AUTHENTICATED RECORD</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <p class="preview-note">
+          ✨ Updates automatically as you type. Click <strong>Flip Card</strong> to see the back face.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>&copy; 2026 Digital Identity Card Generator. Pure Frontend Architecture • Built with HTML, CSS & JavaScript.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

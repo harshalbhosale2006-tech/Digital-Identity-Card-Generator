@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choose ID Card Category - Digital Identity Card Generator</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+</head>
+<body data-page="card-categories">
+  <header class="site-header">
+    <div class="header-container">
+      <a href="dashboard.html" class="brand-logo-link">
+        <img class="brand-icon" src="assets/logo.svg" alt="">
+        <div class="brand-text-group">
+          <span class="brand-title">Digital Identity Card Generator</span>
+          <span class="brand-subtitle">Official Management Portal</span>
+        </div>
+      </a>
+      <nav aria-label="Main navigation">
+        <ul class="nav-links">
+          <li class="nav-item"><a href="dashboard.html">Dashboard</a></li>
+          <li class="nav-item active"><a href="card-categories.html">Create ID Card</a></li>
+          <li class="nav-item"><a href="#" class="btn-logout-action">Logout</a></li>
+        </ul>
+      </nav>
+      <button class="btn-mobile-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    </div>
+  </header>
+  <main class="main-content category-page">
+    <section class="create-page-heading">
+      <div class="create-page-heading-copy">
+        <span class="create-page-eyebrow">IDENTITY MANAGEMENT</span>
+        <h1>Choose an ID Card Category</h1>
+        <p>The existing Student ID Card remains unchanged. Choose a card type to create a separate category-specific identity card.</p>
+      </div>
+    </section>
+    <section class="category-grid" aria-label="ID card categories">
+      <a class="category-tile category-tile-student" href="create-card.html">
+        <span class="category-tile-icon" aria-hidden="true">ST</span>
+        <span class="category-tile-copy"><strong>Student ID Card</strong><small>Continue to the existing student form and card flow.</small></span>
+        <span class="category-tile-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="category-tile" href="category-card.html?type=EMPLOYEE">
+        <span class="category-tile-icon" aria-hidden="true">EM</span>
+        <span class="category-tile-copy"><strong>Employee ID Card</strong><small>Role, department, organization and start date.</small></span>
+        <span class="category-tile-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="category-tile" href="category-card.html?type=PERSONAL">
+        <span class="category-tile-icon" aria-hidden="true">ID</span>
+        <span class="category-tile-copy"><strong>Personal ID Card</strong><small>Optional date of birth and nationality.</small></span>
+        <span class="category-tile-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="category-tile" href="category-card.html?type=MEMBER">
+        <span class="category-tile-icon" aria-hidden="true">MB</span>
+        <span class="category-tile-copy"><strong>Organization / Member ID Card</strong><small>Organization, membership type and membership dates.</small></span>
+        <span class="category-tile-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="category-tile" href="category-card.html?type=EVENT">
+        <span class="category-tile-icon" aria-hidden="true">EV</span>
+        <span class="category-tile-copy"><strong>Event ID Card</strong><small>Event, role, date and venue.</small></span>
+        <span class="category-tile-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="category-tile" href="category-card.html?type=FREELANCER">
+        <span class="category-tile-icon" aria-hidden="true">FL</span>
+        <span class="category-tile-copy"><strong>Freelancer ID Card</strong><small>Profession, specialty and optional portfolio URL.</small></span>
+        <span class="category-tile-arrow" aria-hidden="true">→</span>
+      </a>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111214">
+  <title>Verify Identity Card - Digital Identity Card Generator</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+</head>
+<body data-page="verify">
+  <header class="site-header">
+    <div class="header-container verify-header-container">
+      <a href="index.html" class="brand-logo-link">
+        <img src="assets/logo.svg" alt="" class="brand-icon">
+        <div class="brand-text-group">
+          <span class="brand-title">Digital Identity Card Generator</span>
+          <span class="brand-subtitle">Public identity verification</span>
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <main class="verification-shell">
+    <section class="verification-panel" aria-labelledby="verificationTitle">
+      <div class="verification-status-icon" id="verificationIcon" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4m0 4h.01"/></svg>
+      </div>
+      <p class="verification-eyebrow">DIGITAL CREDENTIAL CHECK</p>
+      <h1 id="verificationTitle">Checking identity card</h1>
+      <p class="verification-message" id="verificationMessage" role="status" aria-live="polite">Contacting the institution’s verification service…</p>
+
+      <div class="verified-student" id="verifiedStudent" hidden>
+        <img class="verified-photo" id="verifiedPhoto" src="assets/default-avatar.svg" alt="Student profile photo">
+        <div class="verified-student-info">
+          <h2 id="verifiedName"></h2>
+          <p class="verified-id" id="verifiedId"></p>
+        </div>
+        <dl class="verified-details">
+          <div id="verifiedDepartmentRow" hidden>
+            <dt>Department</dt>
+            <dd id="verifiedDepartment"></dd>
+          </div>
+          <div id="verifiedCourseRow" hidden>
+            <dt>Course</dt>
+            <dd id="verifiedCourse"></dd>
+          </div>
+          <div id="verifiedYearRow" hidden>
+            <dt>Academic year / semester</dt>
+            <dd id="verifiedYear"></dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="verification-record-status" id="verificationRecordStatus" hidden>
+        <span class="verification-status-dot" aria-hidden="true"></span>
+        <span id="verificationStatusText"></span>
+      </div>
+
+      <p class="verification-privacy-note">This public check displays only basic identity details. Personal contact information, date of birth, address, and blood group are not shown.</p>
+      <a class="verification-home-link" href="index.html">Digital Identity Card Generator</a>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
